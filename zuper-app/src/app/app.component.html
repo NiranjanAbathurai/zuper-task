@@ -1,0 +1,43 @@
+<div class="flex h-screen">
+  <!-- Sidebar -->
+  <div class="w-1/4 bg-gray-100 p-4">
+    <div class="flex justify-between items-center mb-4">
+      <h2 class="font-bold text-lg">Field Groups</h2> 
+      <span class="text-blue-700 flex items-center" (click)="createNewItem()">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v6m3-3H9m12 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" /> 
+        </svg> Create new
+      </span>
+    </div>
+    <ul>
+      <li *ngFor="let item of fieldGroups" class="p-2 bg-gray-200 hover:bg-blue-200 mb-2 cursor-pointer" (click)="onClickItem(item)">
+        {{item.name}}
+      </li>
+    </ul>
+  </div>
+
+  <!-- Main Content -->
+  <div class="flex-1 p-6">
+    <h2 class="text-2xl font-bold mb-4">{{selectedItem.name != undefined ? selectedItem.name :  null}} </h2>
+    <p class="text-gray-500 mb-4">{{selectedItem.description ||  'Add description ...'}} </p>
+
+    <div class="bg-white shadow p-4 rounded-lg">
+      <label class="block text-gray-700">Email</label>
+      <input type="email" class="w-full border p-2 rounded mt-2" placeholder="Enter customer’s email">
+    </div>
+  </div>
+
+  <!-- Elements Sidebar -->
+  <div class="w-1/4 bg-gray-100 p-4">
+    <h2 class="font-bold text-lg mb-4">Elements</h2>
+    <ul>
+      <li class="p-2 bg-gray-200 mb-2">Single Line Text</li>
+      <li class="p-2 bg-gray-200 mb-2">Multi Line Text</li>
+      <li class="p-2 bg-gray-200 mb-2">Integer</li>
+      <li class="p-2 bg-gray-200 mb-2">Date</li>
+      <li class="p-2 bg-gray-200 mb-2">Time</li>
+      <li class="p-2 bg-gray-200 mb-2">Dropdown</li>
+      <li class="p-2 bg-gray-200 mb-2">Upload</li>
+    </ul>
+  </div>
+</div>
