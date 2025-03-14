@@ -9,7 +9,7 @@ export class AppComponent {
   title = 'zuper-app';
   fieldGroups !: any[];
   selectedItem !: any;
-  newItem = {name:'',description:'',elements:[],isEditable:false}
+  newItem = {name:'',description:'',elements:[],isEditable:false,required:false}
   isModalOpen !: boolean;
   taskName !: string;
   descriptionName !: string;
@@ -26,19 +26,20 @@ export class AppComponent {
   ngOnInit(){
     this.fieldGroups = [
       {name:'AMC Reports',description:'test1',elements:[
-        {label:"Email",type:'input-text',value:'',isEditable:false},
-        {label:"UserName",type:'input-text',value:'',isEditable:false},
+        {label:"Email",type:'input-text',value:'',isEditable:false,required:false},
+        {label:"UserName",type:'input-text',value:'',isEditable:false,required:true},
       ]},
       {name:'HVAC Repair',description:'test2',elements:[
-        {label:"Text area",type:'input-text-area',value:'',isEditable:false}
+        {label:"Text area",type:'input-text-area',value:'',isEditable:false,required:false}
       ]},
       {name:'AMC Yearly',description:'test3',elements:[
-        {label:"Phone Number",type:'input-number',value:'',isEditable:false}
+        {label:"Phone Number",type:'input-number',value:'',isEditable:false,required:false}
       ]},
       {name:'AMC Installations',description:'test4',elements:[
-        {label:"Phone Number",type:'input-number',value:'',isEditable:false}
+        {label:"Phone Number",type:'input-number',value:'',isEditable:false,required:false}
       ]}  
     ];
+    localStorage.setItem('defaultList',JSON.stringify(this.fieldGroups));
     this.selectedItem = JSON.parse(JSON.stringify(this.newItem));
     this.index = -1
     this.isEditable = true;
@@ -47,7 +48,7 @@ export class AppComponent {
   onClickItem(item:any,i:number){
    this.defaultItem = false
    this.isEditable = false;
-   console.log(item);
+  //  console.log(item);
    this.selectedItem = JSON.parse(JSON.stringify(item)) 
    this.selectedItem = item 
    this.index = i;
@@ -119,15 +120,6 @@ export class AppComponent {
     this.isEditable = true
   }
 
-  copyText(){
-    
-  }
-
-  // Main content
-
-
-
-
   onDragOverItem(event:any){
     event.preventDefault();
     // console.log(event, "dragOver")
@@ -138,28 +130,28 @@ export class AppComponent {
       alert("You cannot drag and drop without selecting any item on left pane")
     } else{
     const item = event.dataTransfer?.getData('text'); 
-    console.log(item);
+    // console.log(item);
     let newItem : any;
     if(item == 'input-text'){
-      newItem = {label:" Enter header",type:'input-text',value:'',isEditable:false}
+      newItem = {label:" Enter header",type:'input-text',value:'',isEditable:false,required:false}
     } else if(item == 'input-text-area'){
-      newItem = {label:" Enter header",type:'input-text-area',value:'',isEditable:false}
+      newItem = {label:" Enter header",type:'input-text-area',value:'',isEditable:false,required:false}
     } else if(item == 'input-number'){
-      newItem = {label:" Enter header",type:'input-number',value:'',isEditable:false}
+      newItem = {label:" Enter header",type:'input-number',value:'',isEditable:false,required:false}
     } else if(item == 'input-date'){
-      newItem = {label:" Enter header",type:'input-date',value:'',isEditable:false}
+      newItem = {label:" Enter header",type:'input-date',value:'',isEditable:false,required:false}
     } else if(item == 'input-time'){
-      newItem = {label:" Enter header",type:'input-time',value:'',isEditable:false}
+      newItem = {label:" Enter header",type:'input-time',value:'',isEditable:false,required:false}
     } else if(item == 'input-date-time'){
-      newItem = {label:" Enter header",type:'input-date-time',value:'',isEditable:false}
+      newItem = {label:" Enter header",type:'input-date-time',value:'',isEditable:false,required:false}
     } else if(item == 'input-single-select'){
-      newItem = {label:" Enter header",type:'input-single-select',value:'',isEditable:false,selectValues:[],itemList:''}
+      newItem = {label:" Enter header",type:'input-single-select',value:'',isEditable:false,selectValues:[],itemList:'',required:false}
     } else if(item == 'input-multi-select'){
-      newItem = {label:" Enter header",type:'input-multi-select',value:{},isEditable:false,selectValues:[],itemList:''}
+      newItem = {label:" Enter header",type:'input-multi-select',value:{},isEditable:false,selectValues:[],itemList:'',required:false}
     } else if(item == 'input-dropdown'){
-      newItem = {label:" Enter header",type:'input-dropdown',value:[],isEditable:false,selectValues:[],itemList:''}
+      newItem = {label:" Enter header",type:'input-dropdown',value:[],isEditable:false,selectValues:[],itemList:'',required:false}
     } else if(item == 'input-file'){
-      newItem = {label:" Enter header",type:'input-file',value:{},isEditable:false}
+      newItem = {label:" Enter header",type:'input-file',value:{},isEditable:false,required:false}
     }
 
     if (item != undefined && item?.length > 1) {

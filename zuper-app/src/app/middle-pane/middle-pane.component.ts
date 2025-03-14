@@ -15,7 +15,7 @@ export class MiddlePaneComponent {
   newTaskName !: string;
   newTaskDescription !: string;
   displaynewItemError = false;
-  newItem = {name:'',description:'',elements:[]};
+  newItem = {name:'',description:'',elements:[],isEditable:false,required:false};
   draggedIndex: number | null = null;
   singleOptionList = ['Option1','Option2','Other'];
   multiOptionList = ['Options1','Options2','Options3','Options4'];
@@ -46,17 +46,8 @@ export class MiddlePaneComponent {
       // console.log(changes['fieldGroups'].currentValue)
   }
 
-  // isEditable = false;
-  // newTaskName !: string;
-  // newTaskDescription !: string;
-  // displaynewItemError = false;
 
   ngOnInit(){
-    // this.selectedItem.forEach((data:any)=>{
-    //   if(data.selectValues.length < 1){
-    //     data.selectValues = JSON.parse(JSON.stringify(this.singleOptionList));
-    //   }
-    // })
    
   }
 
@@ -95,17 +86,17 @@ export class MiddlePaneComponent {
   }
 
   editItem(item:any,i:number){
-    console.log(item);
+    // console.log(item);
     this.selectedItem.elements[i].isEditable = true;
   }
 
   copyItem(item:any,i:number){
-    console.log(item)
+    // console.log(item)
     this.selectedItem?.elements.push(JSON.parse(JSON.stringify(item)))
   }
 
   deleteItemTask(item:any,i:number){
-    console.log(item)
+    // console.log(item)
     this.selectedItem.elements.splice(i,1)
   }
 
@@ -128,7 +119,7 @@ export class MiddlePaneComponent {
     if(item.itemList != undefined){
       let itemList = item.itemList.trim().split(',');
       itemList = itemList.map((data:any) => data.trim())
-      console.log(itemList);
+      // console.log(itemList);
       item.selectValues = JSON.parse(JSON.stringify(itemList));
       // currVal[i].selectValues = JSON.parse(JSON.stringify(itemList));
     }
@@ -156,7 +147,7 @@ export class MiddlePaneComponent {
 
       this.selectedItem.elements[this.draggedIndex] = targetItem;
       this.selectedItem.elements[dropIndex] = draggedItem;
-      console.log(this.draggedIndex, dropIndex)
+      // console.log(this.draggedIndex, dropIndex)
       // this.selectedItem = [...this.selectedItem]
       this.draggedIndex = null;
       this.cd.detectChanges();
@@ -168,7 +159,7 @@ export class MiddlePaneComponent {
   }
 
   onSelectCheckbox(item:any,opt:any){
-    console.log(item,opt);
+    // console.log(item,opt);
     this.fieldGroupsList.emit(this.selectedItem)
   }
 
@@ -185,7 +176,7 @@ export class MiddlePaneComponent {
       // this.uploadedFiles.push(clonedFile);
       item.value = clonedFile; 
     }
-    console.log(item.value,file);
+    // console.log(item.value,file);
     this.fieldGroupsList.emit(this.selectedItem)
   }
 
