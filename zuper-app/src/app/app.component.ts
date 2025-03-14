@@ -39,7 +39,7 @@ export class AppComponent {
         {label:"Phone Number",type:'input-number',value:'',isEditable:false,required:false}
       ]}  
     ];
-    localStorage.setItem('defaultList',JSON.stringify(this.fieldGroups));
+    // localStorage.setItem('defaultList',JSON.stringify(this.fieldGroups));
     this.selectedItem = JSON.parse(JSON.stringify(this.newItem));
     this.index = -1
     this.isEditable = true;
